@@ -2,14 +2,13 @@
 const express = require('express');
 const multer = require('multer');
 // Hapus 'checkSubdomain' dari sini
-const { deployProject, getMyProjects, deleteProject } = require('../controllers/projectController');
+const { deployProject, getMyProjects, deleteProject, checkSubdomain } = require('../controllers/projectController');
 const { protect } = require('../middleware/authMiddleware');
 
 const router = express.Router();
 const upload = multer({ dest: '/tmp/autohost-uploads' });
 
-// Hapus rute '/check/:subdomain' dari file ini
-// router.get('/check/:subdomain', checkSubdomain); <-- HAPUS BARIS INI
+router.get('/check/:subdomain', checkSubdomain);
 
 // Terapkan middleware 'protect' pada semua rute di bawah ini
 router.use(protect);
